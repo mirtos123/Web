@@ -1,0 +1,31 @@
+# Cannolis Experience — Web
+
+Sitio web de Cannolis Experience®. Stack: HTML estático + React (in-browser via Babel).
+
+## Estructura
+
+- `index.html` — Landing principal + ruta /franquicia
+- `components/` — Componentes React (Variante B home + Franquicia)
+- `styles/tokens.css` — Variables CSS (colores, tipografías, espaciados)
+- `assets/` — Logo, fotos, dossier PDF
+- `vercel.json` — Configuración Vercel (rewrites + cache + security headers)
+- `robots.txt` + `sitemap.xml` — SEO
+
+## Páginas
+
+- `/` — Home (Variante B)
+- `/franquicia` — Programa de franquicia
+
+## Formularios
+
+Ambos formularios envían a `info@chocolatefondue.es` vía FormSubmit.co.
+La primera vez que se envíe, FormSubmit pedirá confirmación al email para activar.
+
+## Contacto
+
+- Tel/WhatsApp: +34 679 166 062
+- Email: info@chocolatefondue.es
+- Instagram: @cannolisexperience
+- TikTok: @cannolisexperience
+
+© 2026 Chocolate Fondue S.L.

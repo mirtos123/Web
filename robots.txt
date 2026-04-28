@@ -1,0 +1,169 @@
+/* Shared atoms used across all 3 variants */
+
+const Logo = ({ color = "currentColor", size = 28, mode = "image" }) => {
+  // mode: "image" uses the real PNG logo; "wordmark" uses the SVG/text version
+  if (mode === "image") {
+    const isLight = color !== "currentColor" && (color === "#FBF8F2" || color === "var(--paper)" || /^#[fF]/.test(color));
+    return (
+      <img
+        src="assets/logo-cannolis.png"
+        alt="Cannolis Experience"
+        style={{
+          height: size * 2.2,
+          width: 'auto',
+          display: 'block',
+          filter: isLight ? 'invert(1) brightness(1.05)' : 'none',
+        }}
+      />
+    );
+  }
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 10, color }}>
+      <svg width={size} height={size} viewBox="0 0 32 32" fill="none">
+        <ellipse cx="16" cy="16" rx="13" ry="6" stroke={color} strokeWidth="1.2" transform="rotate(-20 16 16)"/>
+        <ellipse cx="9" cy="13.5" rx="2.5" ry="1.4" fill={color} transform="rotate(-20 9 13.5)"/>
+        <ellipse cx="23" cy="18.5" rx="2.5" ry="1.4" fill={color} transform="rotate(-20 23 18.5)"/>
+      </svg>
+      <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
+        <span style={{ fontFamily: 'var(--script)', fontSize: 26, lineHeight: 0.8 }}>Cannolis</span>
+        <span style={{ fontFamily: 'var(--sans)', fontSize: 9, letterSpacing: '0.32em', textTransform: 'uppercase', marginTop: 2 }}>Experience</span>
+      </div>
+    </div>
+  );
+};
+
+const Eyebrow = ({ children, accent = false, num }) => (
+  <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+    {num && <span style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--accent-deep)' }}>{num}</span>}
+    <div style={{ width: 24, height: 1, background: accent ? 'var(--accent)' : 'var(--ink-muted)' }} />
+    <span className="eyebrow" style={accent ? { color: 'var(--accent-deep)' } : {}}>{children}</span>
+  </div>
+);
+
+const Mono = ({ children, ...rest }) => (
+  <span className="mono" {...rest}>{children}</span>
+);
+
+const PhotoFrame = ({ src, alt, caption, ratio = "4/5", monoCaption, style }) => (
+  <figure style={{ margin: 0, ...style }}>
+    <div className="img-card" style={{ aspectRatio: ratio, background: 'var(--bone)' }}>
+      <img src={src} alt={alt} />
+    </div>
+    {(caption || monoCaption) && (
+      <figcaption style={{ display: 'flex', justifyContent: 'space-between', marginTop: 10, fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--ink-muted)', letterSpacing: '0.06em' }}>
+        <span>{monoCaption}</span>
+        <span>{caption}</span>
+      </figcaption>
+    )}
+  </figure>
+);
+
+const ArrowIcon = ({ size = 14 }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill="none">
+    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const PlusIcon = ({ size = 12 }) => (
+  <svg width={size} height={size} viewBox="0 0 12 12" fill="none">
+    <path d="M6 1v10M1 6h10" stroke="currentColor" strokeWidth="1"/>
+  </svg>
+);
+
+const StarIcon = ({ size = 12 }) => (
+  <svg width={size} height={size} viewBox="0 0 12 12" fill="currentColor">
+    <path d="M6 0l1.5 4.2L12 4.5l-3.5 2.8L9.7 12 6 9.5 2.3 12l1.2-4.7L0 4.5l4.5-.3L6 0z"/>
+  </svg>
+);
+
+/* Image data — real assets from event photography */
+const PHOTOS = {
+  tower1: 'assets/tower-1.jpg',
+  tower3: 'assets/tower-3.jpg',
+  c1: 'assets/cannoli-1.jpg',     // hand-served, smiling guest
+  c3: 'assets/cannoli-3.jpg',     // poolside hero
+  c4: 'assets/cannoli-4.jpg',     // dark napkin, garden bg, dust sugar
+  c5: 'assets/cannoli-5.jpg',     // bride & groom hands
+  c6: 'assets/cannoli-6.jpg',     // dance floor magic
+};
+
+/* Trust stats and shared content */
+const STATS = [
+  { value: '+20', label: 'Años de experiencia' },
+  { value: '+500', label: 'Eventos celebrados' },
+  { value: '+50', label: 'Bodas al año' },
+  { value: '1ª', label: 'Pioneros en España' },
+];
+
+const STEPS = [
+  {
+    n: '01',
+    title: 'Consulta',
+    body: 'Cuéntanos la fecha, el lugar y el número de invitados. Respondemos en menos de 24 horas con disponibilidad.',
+  },
+  {
+    n: '02',
+    title: 'Propuesta',
+    body: 'Diseñamos una experiencia a medida: rellenos, montaje, duración del show y atrezzo siciliano.',
+  },
+  {
+    n: '03',
+    title: 'Evento',
+    body: 'Llegamos, montamos y rellenamos cada cannolo en directo. Tú solo disfrutas con tus invitados.',
+  },
+];
+
+const BENEFITS = [
+  {
+    n: '01',
+    title: 'Show en directo',
+    body: 'Un maestro pastelero rellena cada cannolo al momento delante de tus invitados. Espectáculo siciliano puro.',
+  },
+  {
+    n: '02',
+    title: 'Producto artesanal',
+    body: 'Masa crujiente elaborada el mismo día y crema de ricotta fresca. Sin conservantes, sin atajos.',
+  },
+  {
+    n: '03',
+    title: 'Pioneros en España',
+    body: 'Fuimos los primeros en traer el filling de cannolis a celebraciones españolas. Sabemos lo que hacemos.',
+  },
+  {
+    n: '04',
+    title: 'Logística sencilla',
+    body: 'Nos adaptamos a cualquier finca, salón o jardín. Solo necesitamos una mesa: del resto nos encargamos.',
+  },
+];
+
+const TESTIMONIALS = [
+  {
+    quote: 'Los invitados se olvidaron de los postres del catering. La cola para el cannoli no se acabó hasta que cerramos la barra.',
+    name: 'Lucía & Mateo',
+    event: 'Boda · Finca El Olivar, Toledo',
+  },
+  {
+    quote: 'Profesionales de principio a fin. La estética del puesto encajó perfectamente con nuestra decoración floral.',
+    name: 'Carolina Vidal',
+    event: 'Aniversario 50º · Sevilla',
+  },
+  {
+    quote: 'Pensábamos que era un detalle y se convirtió en EL momento de la noche. Repetiremos sin duda.',
+    name: 'Javier & Sofía',
+    event: 'Boda · Masía de los Naranjos, Valencia',
+  },
+];
+
+const FORM_FIELDS = [
+  { id: 'nombre', label: 'Nombre completo', placeholder: 'Tu nombre y apellidos', type: 'text' },
+  { id: 'email', label: 'Email', placeholder: 'tu@email.com', type: 'email' },
+  { id: 'telefono', label: 'Teléfono', placeholder: '+34 600 000 000', type: 'tel' },
+  { id: 'fecha', label: 'Fecha del evento', placeholder: 'dd / mm / aaaa', type: 'date' },
+  { id: 'invitados', label: 'Nº de invitados', placeholder: '120', type: 'number' },
+  { id: 'lugar', label: 'Lugar del evento', placeholder: 'Finca, ciudad o provincia', type: 'text' },
+];
+
+Object.assign(window, {
+  Logo, Eyebrow, Mono, PhotoFrame, ArrowIcon, PlusIcon, StarIcon,
+  PHOTOS, STATS, STEPS, BENEFITS, TESTIMONIALS, FORM_FIELDS,
+});

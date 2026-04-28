@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Primary meta -->
+<title>Cannolis Experience® — Cannolis sicilianos en vivo para bodas y eventos premium</title>
+<meta name="description" content="Cannolis sicilianos rellenados en directo para bodas, eventos corporativos y celebraciones premium en España. Show interactivo, ricotta fresca, pistacho de Bronte. Reserva tu fecha 2026—2027." />
+<meta name="keywords" content="cannolis sicilianos, catering bodas, postre boda, food show, cannoli en vivo, eventos premium, catering dulce, dessert station, mesa dulce boda, food experience" />
+<meta name="author" content="Chocolate Fondue S.L." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://www.cannolisexperience.com/" />
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" href="assets/logo-cannolis.png" />
+<link rel="apple-touch-icon" href="assets/logo-cannolis.png" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.cannolisexperience.com/" />
+<meta property="og:title" content="Cannolis Experience® — El postre que tus invitados no olvidarán" />
+<meta property="og:description" content="Cannolis sicilianos rellenados en directo para bodas y eventos premium." />
+<meta property="og:image" content="assets/logo-cannolis.png" />
+<meta property="og:locale" content="es_ES" />
+<meta property="og:site_name" content="Cannolis Experience" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Cannolis Experience® — Cannolis sicilianos en vivo" />
+<meta name="twitter:description" content="El postre que tus invitados no olvidarán." />
+<meta name="twitter:image" content="assets/logo-cannolis.png" />
+
+<meta name="geo.region" content="ES-CT" />
+<meta name="geo.placename" content="Barcelona" />
+
+<!-- JSON-LD Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "FoodEstablishment"],
+  "name": "Cannolis Experience",
+  "alternateName": "Cannolis Experience by Chocolate Fondue",
+  "description": "Cannolis sicilianos rellenados en directo para bodas y eventos premium.",
+  "url": "https://www.cannolisexperience.com",
+  "logo": "https://www.cannolisexperience.com/assets/logo-cannolis.png",
+  "image": "https://www.cannolisexperience.com/assets/logo-cannolis.png",
+  "telephone": "+34679166062",
+  "email": "info@chocolatefondue.es",
+  "priceRange": "€€€",
+  "servesCuisine": ["Italian", "Sicilian", "Dessert"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Eduard Toldrà, 15 bajos",
+    "postalCode": "08950",
+    "addressLocality": "Esplugues de Llobregat",
+    "addressRegion": "Barcelona",
+    "addressCountry": "ES"
+  },
+  "areaServed": { "@type": "Country", "name": "España" },
+  "sameAs": [
+    "https://www.instagram.com/cannolisexperience/",
+    "https://www.tiktok.com/@cannolisexperience"
+  ],
+  "parentOrganization": { "@type": "Organization", "name": "Chocolate Fondue S.L." },
+  "offers": {
+    "@type": "Offer",
+    "name": "Paquete Cannolis Experience",
+    "description": "Cannoli relleno en directo, dos toppings a elegir, 1 hora de servicio. Mínimo 60 invitados.",
+    "price": "4.50",
+    "priceCurrency": "EUR",
+    "eligibleQuantity": { "@type": "QuantitativeValue", "minValue": 60, "unitText": "invitado" }
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles/tokens.css" />
+
+<style>
+  html, body { background: var(--paper); margin: 0; padding: 0; }
+  body { min-height: 100vh; font-family: 'Inter', system-ui, sans-serif; }
+</style>
+</head>
+
+<body data-accent="terracotta">
+
+<div id="root"></div>
+
+<!-- Crawler-friendly content -->
+<div id="seo-content" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">
+  <h1>Cannolis Experience® — Cannolis sicilianos en vivo para bodas y eventos premium</h1>
+  <p>Cannolis Experience es un show de catering interactivo: cannolis sicilianos rellenados en directo frente a tus invitados con ricotta fresca, pistacho de Bronte, chocolate y toppings premium. Servimos bodas, eventos corporativos y celebraciones premium en toda España.</p>
+  <h2>La experiencia en vivo</h2>
+  <p>Montaje siciliano con mármol y latón. Filling al momento. Espolvoreado de azúcar glas. Una pequeña ceremonia que se repite invitado a invitado durante toda la noche.</p>
+  <h2>Tarifas 2026</h2>
+  <p>Paquete Cannolis Experience: 4,50 € por persona. 1 cannoli por invitado, dos toppings a elegir, 1 hora de servicio incluida. Mínimo 60 invitados. Personal 180 € por hora extra. Radio 45 km incluidos. Toppings: pistacho, almendra troceada, chips de chocolate, chips de chocolate de colores, oreo trituradas, mini M&M's.</p>
+  <h2>Programa de Franquicia</h2>
+  <p>Lleva la experiencia a tu ciudad. Modelo probado, formación completa, márgenes claros, exclusividad zonal.</p>
+  <h2>Contacto</h2>
+  <p>Teléfono y WhatsApp: +34 679 166 062. Email: info@chocolatefondue.es. Dirección: Eduard Toldrà 15 bajos, 08950 Esplugues de Llobregat, Barcelona.</p>
+</div>
+
+<noscript>
+  <div style="padding:48px 24px;font-family:serif;text-align:center;color:#1A1614;background:#FBF8F2;">
+    <h1 style="font-size:32px;">Cannolis Experience®</h1>
+    <p>Esta web requiere JavaScript activado. Por favor, activa JavaScript y recarga.</p>
+    <p>Contacto: <a href="tel:+34679166062">+34 679 166 062</a> · <a href="mailto:info@chocolatefondue.es">info@chocolatefondue.es</a></p>
+  </div>
+</noscript>
+
+<!-- React + Babel -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<!-- Components -->
+<script type="text/babel" src="components/shared.jsx"></script>
+<script type="text/babel" src="components/variant-b.jsx"></script>
+<script type="text/babel" src="components/franquicia.jsx"></script>
+
+<script type="text/babel">
+function App() {
+  const getRoute = () => {
+    const p = window.location.pathname;
+    if (p.includes('franquicia')) return 'franquicia';
+    return 'home';
+  };
+  const [page, setPage] = React.useState(getRoute());
+  const [width, setWidth] = React.useState(window.innerWidth);
+
+  React.useEffect(() => {
+    const onResize = () => setWidth(window.innerWidth);
+    const onPop = () => setPage(getRoute());
+    window.addEventListener('resize', onResize);
+    window.addEventListener('popstate', onPop);
+    return () => {
+      window.removeEventListener('resize', onResize);
+      window.removeEventListener('popstate', onPop);
+    };
+  }, []);
+
+  const navigate = (target) => {
+    const path = target === 'franquicia' ? '/franquicia' : '/';
+    window.history.pushState({}, '', path);
+    setPage(target);
+    window.scrollTo(0, 0);
+  };
+
+  const mobile = width < 820;
+  const Comp = page === 'franquicia' ? window.Franquicia : window.VariantB;
+
+  return <Comp mobile={mobile} onNavHome={() => navigate('home')} onNavFranquicia={() => navigate('franquicia')} />;
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+
+</body>
+</html>

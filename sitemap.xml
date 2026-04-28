@@ -1,0 +1,686 @@
+/* Variant B — Modern Emotional Events
+ * Warm storytelling: full-bleed cinematic blocks, soft rounded cards, big quotes, image-led.
+ */
+
+const styleB = `
+.vb-root {
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--sans);
+  --pad: 64px;
+}
+.vb-root.mobile { --pad: 20px; }
+
+.vb-nav {
+  position: relative; z-index: 5;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 24px var(--pad);
+}
+.vb-nav-pill {
+  display: flex; gap: 4px;
+  background: rgba(251,248,242,0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px;
+}
+.vb-nav-pill a {
+  font-size: 12px; letter-spacing: 0.06em; color: var(--ink); text-decoration: none;
+  padding: 8px 18px; border-radius: 999px; transition: all 0.3s;
+}
+.vb-nav-pill a:hover, .vb-nav-pill a.active { background: var(--ink); color: var(--paper); }
+
+/* Hero — full-bleed warm cinematic */
+.vb-hero {
+  position: relative;
+  height: 760px;
+  overflow: hidden;
+  margin: 0 var(--pad);
+  border-radius: 32px;
+}
+.vb-root.mobile .vb-hero { height: 580px; border-radius: 20px; margin: 0 12px; }
+.vb-hero-img { position: absolute; inset: 0; }
+.vb-hero-img img { width: 100%; height: 100%; object-fit: cover; }
+.vb-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(26,22,20,0.05) 0%, rgba(26,22,20,0.55) 100%);
+}
+.vb-hero-content {
+  position: absolute; left: 48px; right: 48px; bottom: 48px;
+  display: grid; grid-template-columns: 1.6fr 1fr; gap: 48px; align-items: end;
+  color: #FBF8F2;
+}
+.vb-root.mobile .vb-hero-content { left: 24px; right: 24px; bottom: 24px; grid-template-columns: 1fr; gap: 24px; }
+.vb-hero-h1 {
+  font-family: var(--serif); font-weight: 400;
+  font-size: 80px; line-height: 0.98; letter-spacing: -0.02em;
+  margin: 0;
+}
+.vb-root.mobile .vb-hero-h1 { font-size: 44px; }
+.vb-hero-h1 em { font-style: italic; color: var(--accent-soft); }
+.vb-hero-sub {
+  font-family: var(--serif); font-style: italic; font-size: 18px; line-height: 1.5;
+  margin: 0 0 24px; opacity: 0.92;
+}
+.vb-hero .btn-primary { background: var(--paper); color: var(--ink); }
+.vb-hero .btn-primary:hover { background: var(--accent-soft); }
+.vb-hero .btn-link { color: #FBF8F2; border-color: #FBF8F2; }
+
+.vb-hero-eyebrow {
+  position: absolute; top: 32px; left: 48px;
+  display: flex; align-items: center; gap: 12px;
+  color: #FBF8F2; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+}
+.vb-root.mobile .vb-hero-eyebrow { top: 20px; left: 24px; }
+.vb-hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-soft); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+.vb-hero-tag {
+  position: absolute; top: 32px; right: 48px;
+  background: rgba(251,248,242,0.92);
+  border-radius: 999px;
+  padding: 10px 18px;
+  display: flex; align-items: center; gap: 10px;
+  font-size: 12px; color: var(--ink); letter-spacing: 0.04em;
+}
+.vb-root.mobile .vb-hero-tag { display: none; }
+
+/* Section frame */
+.vb-section { padding: 96px var(--pad); }
+.vb-root.mobile .vb-section { padding: 64px var(--pad); }
+.vb-section-head { text-align: center; margin-bottom: 64px; }
+.vb-section-title {
+  font-family: var(--serif); font-size: 56px; line-height: 1.05;
+  margin: 16px 0 0; letter-spacing: -0.02em;
+}
+.vb-root.mobile .vb-section-title { font-size: 36px; }
+.vb-section-title em { font-style: italic; color: var(--accent-deep); }
+.vb-section-sub { font-family: var(--serif); font-style: italic; font-size: 19px; color: var(--ink-soft); max-width: 56ch; margin: 24px auto 0; }
+.vb-root.mobile .vb-section-sub { font-size: 16px; }
+
+/* Live experience — alternating image/text rows */
+.vb-rows { display: flex; flex-direction: column; gap: 32px; }
+.vb-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  align-items: center;
+  background: var(--paper);
+  border-radius: 28px;
+  padding: 32px;
+}
+.vb-root.mobile .vb-row { grid-template-columns: 1fr; gap: 24px; padding: 20px; border-radius: 20px; }
+.vb-row.flip { direction: rtl; }
+.vb-row.flip > * { direction: ltr; }
+.vb-root.mobile .vb-row.flip { direction: ltr; }
+.vb-row-img { aspect-ratio: 5/4; overflow: hidden; border-radius: 20px; background: var(--bone); }
+.vb-row-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s ease; }
+.vb-row:hover .vb-row-img img { transform: scale(1.04); }
+.vb-row-content { padding: 24px; }
+.vb-row-num {
+  font-family: var(--serif); font-style: italic; font-size: 64px; line-height: 0.8;
+  color: var(--accent); margin-bottom: 24px;
+}
+.vb-row-title { font-family: var(--serif); font-size: 38px; line-height: 1.05; margin: 0 0 16px; }
+.vb-root.mobile .vb-row-title { font-size: 28px; }
+.vb-row-body { font-size: 15px; line-height: 1.65; color: var(--ink-muted); margin: 0; max-width: 44ch; }
+
+/* Gallery — emotional grid */
+.vb-gallery {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-rows: 280px 280px 280px;
+  gap: 16px;
+}
+.vb-root.mobile .vb-gallery {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 200px 200px 200px 200px;
+}
+.vb-gx { overflow: hidden; border-radius: 20px; background: var(--bone); position: relative; }
+.vb-gx img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s ease; }
+.vb-gx:hover img { transform: scale(1.05); }
+.vb-gx-cap {
+  position: absolute; bottom: 16px; left: 16px;
+  background: rgba(251,248,242,0.92); padding: 8px 14px; border-radius: 999px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.06em; color: var(--ink);
+}
+.vb-g1 { grid-column: 1; grid-row: 1 / 3; }
+.vb-g2 { grid-column: 2; grid-row: 1; }
+.vb-g3 { grid-column: 3; grid-row: 1; }
+.vb-g4 { grid-column: 2 / 4; grid-row: 2; }
+.vb-g5 { grid-column: 1; grid-row: 3; }
+.vb-g6 { grid-column: 2; grid-row: 3; }
+.vb-g7 { grid-column: 3; grid-row: 3; }
+.vb-root.mobile .vb-g1 { grid-column: 1 / 3; grid-row: 1; }
+.vb-root.mobile .vb-g2 { grid-column: 1; grid-row: 2; }
+.vb-root.mobile .vb-g3 { grid-column: 2; grid-row: 2; }
+.vb-root.mobile .vb-g4 { grid-column: 1 / 3; grid-row: 3; }
+.vb-root.mobile .vb-g5 { grid-column: 1; grid-row: 4; }
+.vb-root.mobile .vb-g6 { grid-column: 2; grid-row: 4; }
+.vb-root.mobile .vb-g7 { display: none; }
+
+/* Why us — soft cards with icons */
+.vb-why-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+}
+.vb-root.mobile .vb-why-grid { grid-template-columns: 1fr; }
+.vb-why-card {
+  background: var(--paper);
+  border-radius: 24px;
+  padding: 40px 36px;
+  display: flex; flex-direction: column; gap: 16px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.vb-why-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px -20px rgba(26,22,20,0.15); }
+.vb-why-icon {
+  width: 56px; height: 56px;
+  background: var(--bone);
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent-deep);
+}
+.vb-why-h { font-family: var(--serif); font-size: 26px; line-height: 1.1; margin: 8px 0 0; }
+.vb-why-b { font-size: 14px; line-height: 1.6; color: var(--ink-muted); margin: 0; }
+
+/* Trust band — warm dark */
+.vb-trust {
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 32px;
+  margin: 0 var(--pad);
+  padding: 80px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+  align-items: center;
+  position: relative; overflow: hidden;
+}
+.vb-root.mobile .vb-trust { grid-template-columns: 1fr; padding: 48px 28px; gap: 32px; margin: 0 12px; border-radius: 24px; }
+.vb-trust h3 { font-family: var(--serif); font-size: 56px; line-height: 1.02; margin: 0 0 24px; }
+.vb-root.mobile .vb-trust h3 { font-size: 36px; }
+.vb-trust h3 em { font-style: italic; color: var(--accent-soft); }
+.vb-trust p { font-family: var(--serif); font-style: italic; font-size: 18px; line-height: 1.5; color: #D8CFBE; max-width: 480px; }
+.vb-trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.vb-trust-stat-v { font-family: var(--serif); font-size: 64px; line-height: 1; color: var(--accent-soft); }
+.vb-root.mobile .vb-trust-stat-v { font-size: 44px; }
+.vb-trust-stat-l { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #B6AC97; margin-top: 8px; }
+
+/* Testimonials — carousel feel */
+.vb-test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.vb-root.mobile .vb-test-grid { grid-template-columns: 1fr; }
+.vb-test-card {
+  background: var(--paper);
+  border-radius: 24px;
+  padding: 36px 32px;
+  display: flex; flex-direction: column; gap: 24px;
+  border: 1px solid var(--line-soft);
+}
+.vb-test-stars { display: flex; gap: 4px; color: var(--accent-deep); }
+.vb-test-quote { font-family: var(--serif); font-size: 19px; line-height: 1.4; color: var(--ink); margin: 0; }
+.vb-test-attrib { display: flex; gap: 12px; align-items: center; padding-top: 16px; border-top: 1px solid var(--line); }
+.vb-test-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--bone);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-style: italic; font-size: 18px; color: var(--accent-deep);
+}
+.vb-test-name { font-size: 13px; font-weight: 500; color: var(--ink); }
+.vb-test-event { font-family: var(--mono); font-size: 10px; color: var(--ink-muted); margin-top: 2px; }
+
+/* Process — connected steps */
+.vb-process { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; position: relative; }
+.vb-root.mobile .vb-process { grid-template-columns: 1fr; }
+.vb-step-b {
+  background: var(--paper);
+  border-radius: 24px;
+  padding: 36px 32px;
+  position: relative;
+}
+.vb-step-num {
+  width: 48px; height: 48px;
+  background: var(--accent);
+  color: var(--paper);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-size: 20px;
+  margin-bottom: 24px;
+}
+.vb-step-h { font-family: var(--serif); font-size: 26px; margin: 0 0 12px; }
+.vb-step-b-body { font-size: 14px; line-height: 1.6; color: var(--ink-muted); margin: 0; }
+
+/* Form */
+.vb-form {
+  background: var(--paper);
+  border-radius: 32px;
+  padding: 64px;
+  display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px;
+  align-items: start;
+}
+.vb-root.mobile .vb-form { grid-template-columns: 1fr; padding: 32px 24px; gap: 32px; border-radius: 24px; }
+.vb-form-aside h3 { font-family: var(--serif); font-size: 44px; line-height: 1.05; margin: 16px 0 24px; }
+.vb-root.mobile .vb-form-aside h3 { font-size: 32px; }
+.vb-form-aside h3 em { font-style: italic; color: var(--accent-deep); }
+.vb-form-aside p { font-family: var(--serif); font-style: italic; font-size: 17px; line-height: 1.5; color: var(--ink-soft); }
+.vb-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.vb-root.mobile .vb-form-grid { grid-template-columns: 1fr; }
+.vb-form-grid .full { grid-column: 1 / -1; }
+.vb-input {
+  border: 1px solid var(--line);
+  background: var(--ivory);
+  padding: 16px 18px;
+  border-radius: 12px;
+  font-family: var(--sans); font-size: 14px; color: var(--ink);
+  outline: none; transition: border-color 0.3s;
+  width: 100%;
+}
+.vb-input:focus { border-color: var(--accent); }
+
+/* Form consent */
+.vb-form-consent { display: flex; flex-direction: column; gap: 10px; padding: 16px 18px; background: var(--ivory); border-radius: 12px; }
+.vb-form-consent label { display: flex; gap: 12px; align-items: flex-start; font-size: 13px; line-height: 1.45; color: var(--ink-soft); cursor: pointer; }
+.vb-form-consent input[type="checkbox"] { margin-top: 2px; accent-color: var(--accent-deep); width: 16px; height: 16px; flex-shrink: 0; }
+.vb-form-consent a { color: var(--accent-deep); }
+
+/* Tarifas */
+.vb-tarifas {
+  display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px;
+  max-width: 1080px; margin: 0 auto;
+}
+.vb-root.mobile .vb-tarifas { grid-template-columns: 1fr; gap: 16px; }
+.vb-tarifa-card {
+  background: var(--paper); border-radius: 24px; padding: 40px;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+.vb-root.mobile .vb-tarifa-card { padding: 28px 24px; border-radius: 20px; }
+.vb-tarifa-main {
+  background: var(--ink); color: var(--paper);
+  display: flex; flex-direction: column;
+}
+.vb-tarifa-tag { display: flex; align-items: center; gap: 10px; margin-bottom: 32px; color: var(--accent-soft); }
+.vb-tarifa-tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.vb-tarifa-tag .mono { color: var(--accent-soft); }
+.vb-tarifa-price { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; }
+.vb-tarifa-amount { font-family: var(--serif); font-size: 88px; line-height: 1; letter-spacing: -0.02em; color: var(--paper); }
+.vb-root.mobile .vb-tarifa-amount { font-size: 64px; }
+.vb-tarifa-unit { font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--accent-soft); }
+.vb-tarifa-list { list-style: none; padding: 0; margin: 16px 0 0; display: flex; flex-direction: column; gap: 12px; }
+.vb-tarifa-list li { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; line-height: 1.4; color: #D8CFBE; padding-top: 12px; border-top: 1px solid #2C2520; }
+.vb-tarifa-list li:first-child { border-top: none; padding-top: 0; }
+.vb-li-icon { color: var(--accent); font-weight: 600; flex-shrink: 0; }
+.vb-tarifa-list strong { color: var(--paper); font-weight: 500; }
+
+.vb-tarifa-side { display: flex; flex-direction: column; gap: 16px; }
+.vb-tarifa-mini-h { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-deep); margin-bottom: 16px; }
+.vb-tarifa-toppings { display: flex; flex-wrap: wrap; gap: 8px; }
+.vb-tarifa-toppings span {
+  background: var(--ivory); border: 1px solid var(--line);
+  padding: 8px 14px; border-radius: 999px; font-size: 13px; color: var(--ink);
+}
+.vb-tarifa-cond { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.vb-tarifa-cond li { font-size: 14px; line-height: 1.45; color: var(--ink-soft); padding-left: 14px; position: relative; }
+.vb-tarifa-cond li::before { content: '·'; position: absolute; left: 4px; color: var(--accent-deep); }
+.vb-tarifa-cond strong { color: var(--ink); font-weight: 500; }
+
+.vb-tarifa-cta {
+  margin-top: 40px; display: flex; align-items: center; justify-content: center;
+  gap: 24px; flex-wrap: wrap;
+}
+.vb-root.mobile .vb-tarifa-cta { flex-direction: column; gap: 12px; margin-top: 24px; }
+
+/* Partner */
+.vb-partner {
+  margin: 0 var(--pad) 64px;
+  border-radius: 32px;
+  background: linear-gradient(180deg, var(--paper) 0%, var(--bone) 100%);
+  padding: 80px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+}
+.vb-root.mobile .vb-partner { grid-template-columns: 1fr; padding: 40px 24px; margin: 0 12px 32px; gap: 32px; border-radius: 24px; }
+.vb-partner h3 { font-family: var(--serif); font-size: 52px; line-height: 1.02; margin: 16px 0 20px; }
+.vb-root.mobile .vb-partner h3 { font-size: 32px; }
+.vb-partner h3 em { font-style: italic; color: var(--accent-deep); }
+.vb-partner-img { aspect-ratio: 1/1; border-radius: 24px; overflow: hidden; }
+.vb-partner-img img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Footer */
+.vb-footer { padding: 64px var(--pad) 32px; background: var(--ink); color: var(--paper); }
+.vb-foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
+.vb-root.mobile .vb-foot-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+.vb-foot-col h5 { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-soft); margin: 0 0 16px; font-weight: 500; }
+.vb-foot-col a { display: block; color: #D8CFBE; text-decoration: none; font-size: 14px; padding: 6px 0; }
+.vb-foot-col a:hover { color: var(--paper); }
+.vb-foot-bottom { margin-top: 48px; padding-top: 24px; border-top: 1px solid #2C2520; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10px; color: #8B8275; }
+.vb-root.mobile .vb-foot-bottom { flex-direction: column; gap: 8px; }
+`;
+
+const VariantB = ({ mobile = false, onNavFranquicia }) => {
+  const goFr = (e) => { if (onNavFranquicia) { e.preventDefault(); onNavFranquicia(); } };
+  const W = mobile ? 375 : 1280;
+  return (
+    <div className={`vb-root ${mobile ? 'mobile' : ''}`} style={{ width: W }}>
+      <style>{styleB}</style>
+
+      <nav className="vb-nav">
+        <Logo size={28} />
+        {!mobile && (
+          <div className="vb-nav-pill">
+            <a href="#" className="active">Inicio</a>
+            <a href="#tarifas">Tarifas</a>
+            <a href="/franquicia" onClick={goFr}>Franquicia</a>
+            <a href="#form">Reservar</a>
+          </div>
+        )}
+        <a href="#form" className="btn btn-primary" style={{ borderRadius: 999, padding: mobile ? '10px 14px' : '12px 22px', fontSize: 11 }}>
+          Presupuesto
+        </a>
+      </nav>
+
+      {/* Hero full-bleed cinematic */}
+      <section className="vb-hero">
+        <div className="vb-hero-img"><img src={PHOTOS.c5} alt="Boda con cannolis" /></div>
+        <div className="vb-hero-overlay"></div>
+        <div className="vb-hero-eyebrow">
+          <span className="dot"></span>
+          <span>En vivo · Ahora reservando 2026—2027</span>
+        </div>
+        {!mobile && (
+          <div className="vb-hero-tag">
+            <StarIcon /> 4.98 · +200 reseñas
+          </div>
+        )}
+        <div className="vb-hero-content">
+          <div>
+            <h1 className="vb-hero-h1">
+              El postre que tus<br/>
+              invitados no <em>olvidarán</em>.
+            </h1>
+          </div>
+          <div>
+            <p className="vb-hero-sub">
+              Cannolis sicilianos rellenados en directo. Una experiencia visual y deliciosa para bodas y celebraciones premium.
+            </p>
+            <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+              <a href="#form" className="btn btn-primary" style={{ borderRadius: 999 }}>Solicita presupuesto <ArrowIcon /></a>
+              <a href="/franquicia" onClick={goFr} className="btn-link">Únete como partner</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Live experience */}
+      <section className="vb-section">
+        <div className="vb-section-head">
+          <Eyebrow accent>La experiencia en vivo</Eyebrow>
+          <h2 className="vb-section-title">Un show <em>siciliano</em><br/>en tu evento.</h2>
+          <p className="vb-section-sub">No es un postre. Es un momento. Cuatro actos pensados para emocionar, sorprender y servir el mejor cannoli que tus invitados han probado.</p>
+        </div>
+        <div className="vb-rows">
+          {[
+            { n: '01', t: 'El montaje siciliano', b: 'Llega un puesto inspirado en las pastelerías de Palermo: mármol, latón, paños bordados a mano y una luz cálida que invita a acercarse.', img: PHOTOS.tower3 },
+            { n: '02', t: 'Filling al momento', b: 'Cada invitado elige su relleno frente al maestro. Ricotta fresca, pistacho de Bronte, chocolate. La crema entra en la masa crujiente justo antes de que se la lleven.', img: PHOTOS.c1, flip: true },
+            { n: '03', t: 'El momento de servir', b: 'Espolvoreado de azúcar glas, posado sobre servilleta negra. Una pequeña ceremonia que se repite invitado a invitado durante toda la noche.', img: PHOTOS.c4 },
+            { n: '04', t: 'La cola que no se acaba', b: 'A los 20 minutos hay fila. A la hora siguen pidiendo. La pista de baile huele a azúcar. Eso significa que ha funcionado.', img: PHOTOS.c6, flip: true },
+          ].map((s, i) => (
+            <div key={i} className={`vb-row ${s.flip ? 'flip' : ''}`}>
+              <div className="vb-row-img"><img src={s.img} alt={s.t} /></div>
+              <div className="vb-row-content">
+                <div className="vb-row-num">{s.n}</div>
+                <h3 className="vb-row-title">{s.t}</h3>
+                <p className="vb-row-body">{s.b}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Gallery */}
+      <section className="vb-section">
+        <div className="vb-section-head">
+          <Eyebrow accent>Galería de eventos</Eyebrow>
+          <h2 className="vb-section-title">Bodas <em>reales</em>,<br/>momentos reales.</h2>
+        </div>
+        <div className="vb-gallery">
+          <div className="vb-gx vb-g1"><img src={PHOTOS.c5} alt=""/><div className="vb-gx-cap">Boda · Toledo</div></div>
+          <div className="vb-gx vb-g2"><img src={PHOTOS.c1} alt=""/></div>
+          <div className="vb-gx vb-g3"><img src={PHOTOS.c4} alt=""/><div className="vb-gx-cap">Detalle</div></div>
+          <div className="vb-gx vb-g4"><img src={PHOTOS.c6} alt=""/><div className="vb-gx-cap">Pista de baile</div></div>
+          <div className="vb-gx vb-g5"><img src={PHOTOS.tower1} alt=""/></div>
+          <div className="vb-gx vb-g6"><img src={PHOTOS.c3} alt=""/><div className="vb-gx-cap">Poolside</div></div>
+          <div className="vb-gx vb-g7"><img src={PHOTOS.tower3} alt=""/></div>
+        </div>
+      </section>
+
+      {/* Why us */}
+      <section className="vb-section">
+        <div className="vb-section-head">
+          <Eyebrow accent>Por qué elegirnos</Eyebrow>
+          <h2 className="vb-section-title">Cuatro razones <em>que</em><br/>marcan la diferencia.</h2>
+        </div>
+        <div className="vb-why-grid">
+          {BENEFITS.map((b, i) => {
+            const icons = [
+              <path key="1" d="M4 18h28M8 14l8-8 8 8M14 14v8M22 14v8" stroke="currentColor" strokeWidth="1.4" fill="none"/>,
+              <path key="2" d="M18 6c-6 0-10 4-10 10s4 10 10 10 10-4 10-10S24 6 18 6zM12 18l4 4 8-8" stroke="currentColor" strokeWidth="1.4" fill="none"/>,
+              <path key="3" d="M18 4l3 9h9l-7 6 3 10-8-6-8 6 3-10-7-6h9z" stroke="currentColor" strokeWidth="1.4" fill="none"/>,
+              <path key="4" d="M6 24h24M9 24V12l9-6 9 6v12M14 24v-6h8v6" stroke="currentColor" strokeWidth="1.4" fill="none"/>,
+            ];
+            return (
+              <div key={i} className="vb-why-card">
+                <div className="vb-why-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36">{icons[i]}</svg>
+                </div>
+                <Mono style={{ color: 'var(--accent-deep)' }}>{b.n}</Mono>
+                <h3 className="vb-why-h">{b.title}</h3>
+                <p className="vb-why-b">{b.body}</p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Trust */}
+      <section className="vb-trust">
+        <div>
+          <Eyebrow accent>Trayectoria</Eyebrow>
+          <h3>Pioneros del filling de cannoli <em>en España.</em></h3>
+          <p>Más de dos décadas refinando el oficio. Hemos servido en algunas de las bodas y eventos privados más exigentes del país.</p>
+        </div>
+        <div className="vb-trust-grid">
+          {STATS.map((s, i) => (
+            <div key={i}>
+              <div className="vb-trust-stat-v">{s.value}</div>
+              <div className="vb-trust-stat-l">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="vb-section">
+        <div className="vb-section-head">
+          <Eyebrow accent>Testimonios</Eyebrow>
+          <h2 className="vb-section-title">Lo que dicen <em>de nosotros.</em></h2>
+        </div>
+        <div className="vb-test-grid">
+          {TESTIMONIALS.map((t, i) => (
+            <div key={i} className="vb-test-card">
+              <div className="vb-test-stars">{[0,1,2,3,4].map(j => <StarIcon key={j} size={14}/>)}</div>
+              <p className="vb-test-quote">"{t.quote}"</p>
+              <div className="vb-test-attrib">
+                <div className="vb-test-avatar">{t.name[0]}</div>
+                <div>
+                  <div className="vb-test-name">{t.name}</div>
+                  <div className="vb-test-event">{t.event}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Process */}
+      <section className="vb-section">
+        <div className="vb-section-head">
+          <Eyebrow accent>Cómo reservar</Eyebrow>
+          <h2 className="vb-section-title">Tres pasos. <em>Sin fricción.</em></h2>
+        </div>
+        <div className="vb-process">
+          {STEPS.map((s, i) => (
+            <div key={i} className="vb-step-b">
+              <div className="vb-step-num">{i+1}</div>
+              <h3 className="vb-step-h">{s.title}</h3>
+              <p className="vb-step-b-body">{s.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Tarifas */}
+      <section className="vb-section" id="tarifas" style={{ background: 'var(--ivory)', marginTop: mobile ? 0 : 32 }}>
+        <div className="vb-section-head">
+          <Eyebrow accent>Tarifas 2026</Eyebrow>
+          <h2 className="vb-section-title">Precios <em>claros.</em><br/>Sin sorpresas.</h2>
+          <p className="vb-section-sub">El paquete base incluye cannoli relleno en directo, dos toppings a elegir y servicio durante 1 hora.</p>
+        </div>
+        <div className="vb-tarifas">
+          <div className="vb-tarifa-card vb-tarifa-main">
+            <div className="vb-tarifa-tag"><span className="dot"></span><Mono>Paquete Cannolis Experience</Mono></div>
+            <div className="vb-tarifa-price">
+              <span className="vb-tarifa-amount">4,5 €</span>
+              <span className="vb-tarifa-unit">/persona</span>
+            </div>
+            <Mono style={{ color: 'var(--ink-muted)', display: 'block', marginTop: -4, marginBottom: 24 }}>1 cannoli por invitado · IVA no incluido</Mono>
+            <ul className="vb-tarifa-list">
+              <li><span className="vb-li-icon">✓</span>Cannoli (1 ud) rellenado en vivo</li>
+              <li><span className="vb-li-icon">✓</span>Elección de <strong>dos toppings</strong> a elegir</li>
+              <li><span className="vb-li-icon">✓</span>Montaje siciliano (mármol, latón, paños)</li>
+              <li><span className="vb-li-icon">✓</span>1 hora de servicio incluida</li>
+            </ul>
+          </div>
+          <div className="vb-tarifa-side">
+            <div className="vb-tarifa-card">
+              <div className="vb-tarifa-mini-h">Toppings disponibles</div>
+              <div className="vb-tarifa-toppings">
+                <span>Pistacho</span>
+                <span>Almendra troceada</span>
+                <span>Chips de chocolate</span>
+                <span>Chips de chocolate de colores</span>
+                <span>Oreo trituradas</span>
+                <span>Mini M&M's</span>
+              </div>
+            </div>
+            <div className="vb-tarifa-card">
+              <div className="vb-tarifa-mini-h">Condiciones</div>
+              <ul className="vb-tarifa-cond">
+                <li><strong>Mínimo</strong> 60 invitados</li>
+                <li><strong>Personal</strong> 180 € / hora extra</li>
+                <li><strong>Radio</strong> 45 km incluidos · más km con suplemento</li>
+                <li><strong>Sujeto a cambios</strong> según fecha y disponibilidad</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="vb-tarifa-cta">
+          <Mono style={{ color: 'var(--ink-muted)' }}>¿Quieres el dossier completo en PDF?</Mono>
+          <a href="#form" className="btn btn-primary" style={{ borderRadius: 999 }}>Solicitar dossier por email <ArrowIcon /></a>
+        </div>
+      </section>
+
+      {/* Form */}
+      <section className="vb-section" id="form">
+        <div className="vb-form">
+          <div className="vb-form-aside">
+            <Eyebrow accent>Contacto</Eyebrow>
+            <h3>Cuéntanos<br/><em>tu evento.</em></h3>
+            <p>Respuesta en menos de 24 horas. Sin compromiso.</p>
+            <div style={{ marginTop: 32, padding: 24, background: 'var(--ivory)', borderRadius: 16 }}>
+              <div className="eyebrow" style={{ marginBottom: 10 }}>Contacto directo</div>
+              <div style={{ fontFamily: 'var(--serif)', fontSize: 22 }}>+34 679 166 062</div>
+              <div className="mono" style={{ marginTop: 6, color: 'var(--ink-muted)' }}>info@chocolatefondue.es</div>
+            </div>
+          </div>
+          <form className="vb-form-grid" action="https://formsubmit.co/info@chocolatefondue.es" method="POST">
+            <input type="hidden" name="_subject" value="Nueva solicitud de presupuesto — Cannolis Experience" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_autoresponse" value="Hola, gracias por contactar con Cannolis Experience. Hemos recibido tu solicitud y te responderemos en menos de 24 horas con tarifas personalizadas y disponibilidad para tu fecha. Para cualquier consulta urgente: +34 679 166 062 (WhatsApp) o info@chocolatefondue.es" />
+            <input type="hidden" name="_next" value="#form" />
+            {FORM_FIELDS.map((f, i) => (
+              <div key={f.id} className="field">
+                <label className="field-label">{f.label}</label>
+                <input className="vb-input" type={f.type} name={f.id} placeholder={f.placeholder} required={['nombre','email','fecha','invitados'].includes(f.id)} />
+              </div>
+            ))}
+            <div className="field full">
+              <label className="field-label">Cuéntanos más</label>
+              <textarea className="vb-input" name="mensaje" rows="3" placeholder="Tipo de evento, ideas, preguntas..."></textarea>
+            </div>
+            <div className="field full vb-form-consent">
+              <label>
+                <input type="checkbox" name="dossier" value="si" defaultChecked />
+                <span>Quiero recibir el <strong>dossier de tarifas en PDF</strong> por email</span>
+              </label>
+              <label>
+                <input type="checkbox" name="privacidad" value="si" required />
+                <span>Acepto la <a href="#privacidad">política de privacidad</a> y el tratamiento de mis datos para responder a esta consulta.</span>
+              </label>
+            </div>
+            <div className="full" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
+              <Mono style={{ color: 'var(--ink-muted)' }}>Aceptamos eventos en toda la península</Mono>
+              <button className="btn btn-primary" type="submit" style={{ borderRadius: 999 }}>Enviar solicitud <ArrowIcon /></button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      {/* Partner */}
+      <section className="vb-partner" id="partner">
+        <div>
+          <Eyebrow accent>Programa de Franquicia</Eyebrow>
+          <h3>Lleva la <em>experiencia</em><br/>a tu ciudad.</h3>
+          <p style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: 18, color: 'var(--ink-soft)' }}>
+            Modelo probado. Formación completa. Márgenes claros. Buscamos partners que compartan la obsesión por el oficio.
+          </p>
+          <div style={{ marginTop: 32, display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+            <a href="/franquicia" onClick={goFr} className="btn btn-primary" style={{ borderRadius: 999 }}>Ver franquicia <ArrowIcon /></a>
+            <div style={{ display: 'flex', gap: 32 }}>
+              <div><div style={{ fontFamily: 'var(--serif)', fontSize: 28 }}>21</div><Mono>Ciudades</Mono></div>
+              <div><div style={{ fontFamily: 'var(--serif)', fontSize: 28 }}>76</div><Mono>Partners*</Mono></div>
+            </div>
+          </div>
+          <Mono style={{ marginTop: 16, color: 'var(--ink-muted)', fontSize: 11 }}>* Plazas por definir · Red en lanzamiento</Mono>
+        </div>
+        <div className="vb-partner-img"><img src={PHOTOS.tower1} alt="Tower de cannolis" /></div>
+      </section>
+
+      {/* Footer */}
+      <footer className="vb-footer">
+        <div className="vb-foot-grid">
+          <div>
+            <Logo color="#FBF8F2" />
+            <p style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: 15, color: '#D8CFBE', maxWidth: 320, marginTop: 24 }}>
+              Cannolis sicilianos rellenados en directo para bodas y eventos premium en España.
+            </p>
+          </div>
+          <div className="vb-foot-col">
+            <h5>Empresa</h5>
+            <a href="#">Sobre nosotros</a>
+            <a href="#">Eventos</a>
+            <a href="/franquicia" onClick={goFr}>Franquicia</a>
+          </div>
+          <div className="vb-foot-col">
+            <h5>Contacto</h5>
+            <a href="https://wa.me/34679166062" target="_blank" rel="noopener">+34 679 166 062</a>
+            <a href="mailto:info@chocolatefondue.es">info@chocolatefondue.es</a>
+          </div>
+          <div className="vb-foot-col">
+            <h5>Síguenos</h5>
+            <a href="https://www.instagram.com/cannolisexperience/" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.tiktok.com/@cannolisexperience" target="_blank" rel="noopener">TikTok</a>
+          </div>
+        </div>
+        <div className="vb-foot-bottom">
+          <span>© 2026 Cannolis Experience</span>
+          <span>Aviso legal · Privacidad · Cookies</span>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+window.VariantB = VariantB;
