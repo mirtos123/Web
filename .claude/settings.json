@@ -28,6 +28,10 @@
             "env": {
                 "API_KEY": "${21ST_DEV_API_KEY}"
             }
+        },
+        "firebase": {
+            "command": "npx",
+            "args": ["-y", "firebase-tools@latest", "experimental:mcp"]
         }
     }
 }
