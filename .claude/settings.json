@@ -14,6 +14,13 @@
             "headers": {
                 "X-Goog-Api-Key": "${STITCH_API_KEY}"
             }
+        },
+        "nano-banana": {
+            "command": "npx",
+            "args": ["-y", "@ycse/nanobanana-mcp"],
+            "env": {
+                "GEMINI_API_KEY": "${GEMINI_API_KEY}"
+            }
         }
     }
 }
