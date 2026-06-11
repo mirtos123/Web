@@ -21,6 +21,13 @@
             "env": {
                 "GEMINI_API_KEY": "${GEMINI_API_KEY}"
             }
+        },
+        "21st-dev": {
+            "command": "npx",
+            "args": ["-y", "@21st-dev/magic@latest"],
+            "env": {
+                "API_KEY": "${21ST_DEV_API_KEY}"
+            }
         }
     }
 }
