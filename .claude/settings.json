@@ -36,6 +36,17 @@
         "shadcn": {
             "command": "npx",
             "args": ["shadcn@latest", "mcp"]
+        },
+        "scrapling": {
+            "command": "scrapling-fetch-mcp",
+            "args": ["mcp"]
+        },
+        "clay": {
+            "type": "http",
+            "url": "https://api.clay.com/v3/mcp",
+            "headers": {
+                "Authorization": "Bearer ${CLAY_API_KEY}"
+            }
         }
     }
 }
